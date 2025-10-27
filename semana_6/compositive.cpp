@@ -1,73 +1,41 @@
 #include <iostream>
 #include <vector>
-#include <memory>
-
 using namespace std;
 
+// Clase  abstracta
 class Figura {
 public:
-    virtual ~Figura() = default;
-    virtual void dibujar() const = 0;
+    virtual void dibujar() = 0; 
 };
 
 class Circulo : public Figura {
 public:
-    void dibujar() const override {
+    void dibujar() override {
         cout << "Círculo\n";
     }
 };
 
-class Rectangulo : public Figura {
-public:
-    void dibujar() const override {
-        cout << "Rectángulo\n";
-    }
-};
-
-class Triangulo : public Figura {
-public:
-    void dibujar() const override {
-        cout << "Triángulo\n";
-    }
-};
-
+// Clase compuesta: Grupo
 class Grupo : public Figura {
-private:
-    vector<shared_ptr<Figura>> figuras;
-
+    vector<Figura*> figuras;
 public:
-    void add(shared_ptr<Figura> f) {
+    void add(Figura* f) {
         figuras.push_back(f);
     }
 
-    void dibujar() const override {
-        cout << "--- Grupo de figuras ---\n";
-        for (const auto& f : figuras) {
-            f->dibujar();
-        }
+    void dibujar() override {
+        for (auto f : figuras)
+            f->dibujar();  // llama al método de cada figura
     }
 };
 
 int main() {
-    auto c1 = make_shared<Circulo>();
-    auto c2 = make_shared<Circulo>();
-    auto r1 = make_shared<Rectangulo>();
-    
+    Circulo c1, c2;
     Grupo g;
-    g.add(c1);
-    g.add(c2);
-    g.add(r1);
-    g.dibujar();
-    
-    cout << "\n--- Grupos anidados ---\n";
-    auto subgrupo = make_shared<Grupo>();
-    subgrupo->add(make_shared<Triangulo>());
-    subgrupo->add(make_shared<Circulo>());
-    
-    Grupo grupoMaestro;
-    grupoMaestro.add(subgrupo);
-    grupoMaestro.add(make_shared<Rectangulo>());
-    grupoMaestro.dibujar();
 
+    g.add(&c1);
+    g.add(&c2);
+
+    g.dibujar(); 
     return 0;
 }

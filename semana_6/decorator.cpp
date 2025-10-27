@@ -1,22 +1,28 @@
 #include <iostream>
 #include <string>
-#include <functional>
-
+#include <functional>  
 using namespace std;
 
-function<string(const string&)> log(function<string(const string&)> func, const string& nombreFunc) {
-    return [func, nombreFunc](const string& nombre) {
-        cout << "Ejecutando función: " << nombreFunc << "\n";
-        return func(nombre);
+// "Decorador" que envuelve una función
+function<string(string)> log(function<string(string)> func) {
+    // devuelve una nueva función anónima 
+    return [func](string nombre) {
+        cout << "Ejecutando función: saludar" << endl;
+        return func(nombre); 
     };
 }
 
-string saludar(const string& nombre) {
+// función original
+string saludar(string nombre) {
     return "Hola " + nombre;
 }
 
 int main() {
-    auto saludarDecorado = log(saludar, "saludar");
-    cout << saludarDecorado("Aldo") << "\n";
+    // aplica el "decorador" a la función
+    auto saludarConLog = log(saludar);
+
+    // llama a la función decorada
+    cout << saludarConLog("Aldo") << endl;
+
     return 0;
 }
