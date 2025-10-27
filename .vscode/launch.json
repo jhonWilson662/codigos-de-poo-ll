@@ -2,40 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Ejecutar hola (terminal integrada)",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${fileDirname}",
-      "externalConsole": false,
-      "internalConsoleOptions": "neverOpen",
-      "preLaunchTask": "C/C++: g++.exe compilar archivo activo",
-      "MIMode": "gdb",
-      "miDebuggerPath": "c:/msys64/ucrt64/bin/gdb.exe",
-      "logging": {
-        "engineLogging": false,
-        "trace": false,
-        "traceResponse": false
-      },
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ]
-    },
-    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/ASUS Vivobook/Desktop/codigos de poo ll/practicas_poo_ll",
-      "program": "c:/Users/ASUS Vivobook/Desktop/codigos de poo ll/practicas_poo_ll/build/Debug/outDebug",
+      "cwd": ".",
+      "program": "build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "c:/msys64/ucrt64/bin/gdb.exe",
       "setupCommands": [
