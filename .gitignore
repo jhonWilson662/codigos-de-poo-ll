@@ -1,0 +1,12 @@
+ # Archivos de la compilación
+*.exe
+*.o
+
+# Carpetas de configuración de VS Code
+.vscode/
+
+# Archivos de registro, si los tienes
+*.log
+
+# Carpetas de librerías/dependencias (si las usas)
+/node_modules
